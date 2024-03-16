@@ -3,4 +3,8 @@ version: 3
 
 tasks:
 
+  install-wgo: go install github.com/bokwoon95/wgo@latest
+  install-templ: go install github.com/a-h/templ/cmd/templ@latest
+  install-task: go install github.com/go-task/task/v3/cmd/task@latest
+
   run: 'wgo -file=.go -file=.templ -xfile=_templ.go templ generate :: go run main.go'

@@ -23,3 +23,11 @@ graph LR
 * Database access code
   * Handles database activity such as inserting and querying records
   * Ensures that the database representation (`records`) doesn't leak to the service layer
+
+
+  ## Dev Environment
+
+  - VSCode as IDE
+  - Templ for static rendering
+  - Taskfile for automation
+  - wgo for live reloading
