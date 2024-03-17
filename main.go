@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/charmbracelet/log"
+	"github.com/go-chi/chi/v5/middleware"
 )
 
 func main() {
@@ -18,11 +19,12 @@ func main() {
 
 	htmlHandler := handlers.HTML{}
 	mux.HandleFunc("GET /", htmlHandler.GetHomePage)
-
+	mux.HandleFunc("GET /contact", htmlHandler.GetContactPage)
+	
 	// Server Setup
 	serv := http.Server{
 		Addr:    hostAddr,
-		Handler: mux,
+		Handler: middleware.Logger(mux),
 	}
 
 	log.Info("starting server", "port", port)
