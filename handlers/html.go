@@ -10,6 +10,11 @@ type HTML struct {
 }
 
 func (h HTML) GetHomePage(w http.ResponseWriter, r *http.Request) {
+
+	if r.URL.Path != "/" {
+		http.NotFound(w, r)
+		return
+	}
 	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	components.Home("MK").Render(context.TODO(), w)

@@ -20,7 +20,6 @@ func main() {
 	htmlHandler := handlers.HTML{}
 	mux.HandleFunc("GET /", htmlHandler.GetHomePage)
 	mux.HandleFunc("GET /contact", htmlHandler.GetContactPage)
-	
 	// Server Setup
 	serv := http.Server{
 		Addr:    hostAddr,
