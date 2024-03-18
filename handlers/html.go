@@ -2,26 +2,25 @@ package handlers
 
 import (
 	"album/components"
-	"context"
 	"net/http"
+
+	"github.com/a-h/templ"
 )
 
 type HTML struct {
 }
 
 func (h HTML) GetHomePage(w http.ResponseWriter, r *http.Request) {
-
-	if r.URL.Path != "/" {
-		http.NotFound(w, r)
-		return
-	}
-	w.WriteHeader(http.StatusOK)
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	components.Home("MK").Render(context.TODO(), w)
+	h.renderComponent(w, r, components.Home())
 }
 
 func (h HTML) GetContactPage(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusOK)
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	components.Contact().Render(context.TODO(), w)
+	h.renderComponent(w, r, components.Contact())
+}
+
+
+func (h HTML) renderComponent(w http.ResponseWriter, r *http.Request, component templ.Component) {
+	if err := component.Render(r.Context(), w); err != nil {
+		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+	}
 }
