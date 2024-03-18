@@ -1,5 +1,13 @@
 package components
 
 templ Contact() {
-	<h1>Contact Us</h1>
+	@rootComponent(contactBody())
+}
+
+templ contactBody() {
+	<body>
+		<h1 class="text-3xl font-bold underline">
+			Contact Us 
+		</h1>
+	</body>
 }

@@ -1,5 +1,13 @@
 package components
 
 templ Home() {
-	<h1>Home Page</h1>
+	@rootComponent(homeBody())
+}
+
+templ homeBody() {
+	<body>
+		<h1 class="text-3xl font-bold underline">
+			Home Page
+		</h1>
+	</body>
 }
